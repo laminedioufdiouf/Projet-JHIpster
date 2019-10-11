@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="jhipster2App.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipster2App.transaction.dateexpediteur">Dateexpediteur</span></dt>
+                <dd>
+                    <span>{{transaction.dateexpediteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.montant">Montant</span></dt>
+                <dd>
+                    <span>{{transaction.montant}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.idexpediteur">Idexpediteur</span></dt>
+                <dd>
+                    <span>{{transaction.idexpediteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.dateretrait">Dateretrait</span></dt>
+                <dd>
+                    <span>{{transaction.dateretrait}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.iddestinataire">Iddestinataire</span></dt>
+                <dd>
+                    <span>{{transaction.iddestinataire}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.iduserexpediteur">Iduserexpediteur</span></dt>
+                <dd>
+                    <span>{{transaction.iduserexpediteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.iduserrecepteur">Iduserrecepteur</span></dt>
+                <dd>
+                    <span>{{transaction.iduserrecepteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.commission">Commission</span></dt>
+                <dd>
+                    <span>{{transaction.commission}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.commissionexpediteur">Commissionexpediteur</span></dt>
+                <dd>
+                    <span>{{transaction.commissionexpediteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.commissionrecepteur">Commissionrecepteur</span></dt>
+                <dd>
+                    <span>{{transaction.commissionrecepteur}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.taxe">Taxe</span></dt>
+                <dd>
+                    <span>{{transaction.taxe}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.status">Status</span></dt>
+                <dd>
+                    <span>{{transaction.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.code">Code</span></dt>
+                <dd>
+                    <span>{{transaction.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="transaction.client">
+                        <a [routerLink]="['/client', transaction.client?.id, 'view']">{{transaction.client?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhipster2App.transaction.user">User</span></dt>
+                <dd>
+                    {{transaction.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

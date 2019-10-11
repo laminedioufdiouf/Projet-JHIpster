@@ -1,0 +1,36 @@
+{
+  "jhipster2App": {
+    "transaction": {
+      "home": {
+        "title": "Transactions",
+        "createLabel": "Créer un nouveau Transaction",
+        "createOrEditLabel": "Créer ou éditer un Transaction",
+        "notFound": "Aucun Transaction trouvé"
+      },
+      "created": "Un nouveau Transaction a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Transaction avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Transaction avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Transaction {{ id }} ?"
+      },
+      "detail": {
+        "title": "Transaction"
+      },
+      "dateexpediteur": "Dateexpediteur",
+      "montant": "Montant",
+      "idexpediteur": "Idexpediteur",
+      "dateretrait": "Dateretrait",
+      "iddestinataire": "Iddestinataire",
+      "iduserexpediteur": "Iduserexpediteur",
+      "iduserrecepteur": "Iduserrecepteur",
+      "commission": "Commission",
+      "commissionexpediteur": "Commissionexpediteur",
+      "commissionrecepteur": "Commissionrecepteur",
+      "taxe": "Taxe",
+      "status": "Status",
+      "code": "Code",
+      "client": "Client",
+      "user": "User"
+    }
+  }
+}

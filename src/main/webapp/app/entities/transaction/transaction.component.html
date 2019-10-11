@@ -1,0 +1,100 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jhipster2App.transaction.home.title">Transactions</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-transaction" [routerLink]="['/transaction/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jhipster2App.transaction.home.createLabel">
+            Create a new Transaction
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="transactions?.length === 0">
+        <span jhiTranslate="jhipster2App.transaction.home.notFound">No transactions found</span>
+    </div>
+    <div class="table-responsive" *ngIf="transactions?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dateexpediteur"><span jhiTranslate="jhipster2App.transaction.dateexpediteur">Dateexpediteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="montant"><span jhiTranslate="jhipster2App.transaction.montant">Montant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idexpediteur"><span jhiTranslate="jhipster2App.transaction.idexpediteur">Idexpediteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="dateretrait"><span jhiTranslate="jhipster2App.transaction.dateretrait">Dateretrait</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="iddestinataire"><span jhiTranslate="jhipster2App.transaction.iddestinataire">Iddestinataire</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="iduserexpediteur"><span jhiTranslate="jhipster2App.transaction.iduserexpediteur">Iduserexpediteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="iduserrecepteur"><span jhiTranslate="jhipster2App.transaction.iduserrecepteur">Iduserrecepteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="commission"><span jhiTranslate="jhipster2App.transaction.commission">Commission</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="commissionexpediteur"><span jhiTranslate="jhipster2App.transaction.commissionexpediteur">Commissionexpediteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="commissionrecepteur"><span jhiTranslate="jhipster2App.transaction.commissionrecepteur">Commissionrecepteur</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="taxe"><span jhiTranslate="jhipster2App.transaction.taxe">Taxe</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="status"><span jhiTranslate="jhipster2App.transaction.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="code"><span jhiTranslate="jhipster2App.transaction.code">Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="client.id"><span jhiTranslate="jhipster2App.transaction.client">Client</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="jhipster2App.transaction.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transaction of transactions ;trackBy: trackId">
+                <td><a [routerLink]="['/transaction', transaction.id, 'view' ]">{{transaction.id}}</a></td>
+                <td>{{transaction.dateexpediteur | date:'medium'}}</td>
+                <td>{{transaction.montant}}</td>
+                <td>{{transaction.idexpediteur}}</td>
+                <td>{{transaction.dateretrait | date:'medium'}}</td>
+                <td>{{transaction.iddestinataire}}</td>
+                <td>{{transaction.iduserexpediteur}}</td>
+                <td>{{transaction.iduserrecepteur}}</td>
+                <td>{{transaction.commission}}</td>
+                <td>{{transaction.commissionexpediteur}}</td>
+                <td>{{transaction.commissionrecepteur}}</td>
+                <td>{{transaction.taxe}}</td>
+                <td>{{transaction.status}}</td>
+                <td>{{transaction.code}}</td>
+                <td>
+                    <div *ngIf="transaction.client">
+                        <a [routerLink]="['/client', transaction.client?.id, 'view' ]" >{{transaction.client?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{transaction.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/transaction', transaction.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/transaction', transaction.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/transaction', { outlets: { popup: transaction.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="transactions?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
